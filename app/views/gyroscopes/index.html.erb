@@ -1,0 +1,42 @@
+<div class="container">
+  <div style="margin-top: 10px;margin-bottom: 10px;float: right;">
+    <a class="btn btn-secondary" href="/gyroscopes/new" role="button">New Gyroscope</a>
+  </div>
+  <table class="table table-sm" style='margin-top: 10px'>
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">X-Vector</th>
+        <th scope="col">Y-Vector</th>
+        <th scope="col">Z-Vector</th>
+        <th scope="col">Drone Name</th>
+        <th scope="col">Created At</th>
+        <th scope="col">Updated At</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if @gyroscopes.present? %>
+        <% @gyroscopes.each do |gyroscope| %>
+          <tr>
+            <td><%= gyroscope.name %></td>
+            <td><%= gyroscope.x %></td>
+            <td><%= gyroscope.y %></td>
+            <td><%= gyroscope.z %></td>
+            <td><%= gyroscope.drone.name if gyroscope.drone.present? %></td>
+            <td><%= gyroscope.created_at %></td>
+            <td><%= gyroscope.updated_at %></td>
+            <td>
+              <%= link_to "Edit", edit_gyroscope_path(gyroscope), class: "btn btn-secondary btn-sm" %>
+              <%= link_to "Delete", gyroscope_path(gyroscope), method: 'delete', class: "btn btn-secondary btn-sm" %>
+            </td>
+          </tr>      
+        <% end %>
+      <% else %>
+        <tr>
+          <td>No Records Found</td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

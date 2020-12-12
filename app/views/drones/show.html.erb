@@ -1,0 +1,85 @@
+<div class="container">
+  <div class="row">
+    <div class='col-md-6' style="border: 1px solid #ccc;margin-top: 20px;padding: 10px">
+      <img src="/assets/drone.png" width="100%">
+
+      <div class="bd-example">
+        <% if @drone.status == "off" %>
+          <%= link_to "TAKE OFF", take_off_drone_path(@drone), :method => :put, class: "btn btn-primary btn-sm" %>
+        <% end %>
+        <% if ["on", "moving", "hovering", "landed"].include? @drone.status  %>
+          <%= link_to "STABILIZE", stabilize_drone_path(@drone), :method => :put, class: "btn btn-primary btn-sm" %>
+          <%= link_to "LAND", land_drone_path(@drone), :method => :put, class: "btn btn-primary btn-sm" %>
+          <p></p>
+          <%= link_to "MOVE FORWARD", move_drone_path(@drone, direction: 'forward'), :method => :put, class: "btn btn-primary btn-sm" %>
+          <%= link_to "LEFT", move_drone_path(@drone, direction: 'left'), :method => :put, class: "btn btn-primary btn-sm" %>
+          <%= link_to "RIGHT", move_drone_path(@drone, direction: 'right'), :method => :put, class: "btn btn-primary btn-sm" %>
+          <%= link_to "BACK", move_drone_path(@drone, direction: 'back'), :method => :put, class: "btn btn-primary btn-sm" %>
+          <%= link_to "UP", move_drone_path(@drone, direction: 'up'), :method => :put, class: "btn btn-primary btn-sm" %>
+          <%= link_to "DOWN", move_drone_path(@drone, direction: 'down'), :method => :put, class: "btn btn-primary btn-sm" %>
+          <p></p>
+          <%= link_to "TAP DRONE", tap_drone_drone_path(@drone), :method => :put, class: "btn btn-primary btn-sm" %>
+          <%= link_to "ENGINE BREAKS", engine_break_drone_path(@drone), :method => :put, class: "btn btn-primary btn-sm" %>
+          <%= link_to "STOP DRONE", stop_drone_drone_path(@drone), :method => :put, class: "btn btn-primary btn-sm" %>
+        <% end %>
+      </div>
+
+    </div>
+    <div class='col-md-6' style="border: 1px solid #ccc;margin-top: 20px;padding: 10px">
+      <p><b>Drone Details:</b></p>
+      <span><b>Name:</b> <%= @drone.name %></span>
+      <span><b>Colour:</b> <%= @drone.colour %></span>
+      <span><b>Status:</b> <%= @drone.status %></span>
+      <p></p>
+      
+      <p><b>Engine Details:</b></p>
+      <table class="table table-sm" style='margin-top: 10px'>
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Power Indicator</th>
+            <th scope="col">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @drone.engines.each do |engine| %>
+            <tr>
+              <td><%= engine.name %></td>
+              <td><%= engine.power_indicator %></td>
+              <td><%= engine.status %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+      <p></p>
+      <p><b>Gyroscope Details:</b></p>
+      <span><b>Name:</b> <%= @drone.gyroscope.name %></span>
+      <span><b>X-Vector:</b> <%= @drone.gyroscope.x %></span>
+      <span><b>Y-Vector:</b> <%= @drone.gyroscope.y %></span>
+      <span><b>Z-Vector:</b> <%= @drone.gyroscope.z %></span>
+
+      <p></p>
+      <p><b>Orientation Sensor Details:</b></p>
+      <span><b>Name:</b> <%= @drone.orientation_sensor.name %></span>
+      <span><b>Pitch:</b> <%= @drone.orientation_sensor.pitch %></span>
+      <span><b>Roll:</b> <%= @drone.orientation_sensor.roll %></span>
+    </div>
+  </div>
+</div>
+
+
+<!-- <div class="container">
+  <div class="bd-example">
+    <button type="button" class="btn btn-primary">Primary</button>
+    <button type="button" class="btn btn-secondary">Secondary</button>
+    <button type="button" class="btn btn-success">Success</button>
+    <button type="button" class="btn btn-danger">Danger</button>
+    <button type="button" class="btn btn-warning">Warning</button>
+    <button type="button" class="btn btn-info">Info</button>
+    <button type="button" class="btn btn-light">Light</button>
+    <button type="button" class="btn btn-dark">Dark</button>
+    <button type="button" class="btn btn-link">Link</button>
+  </div>
+</div>
+ -->

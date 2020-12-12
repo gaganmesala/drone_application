@@ -1,0 +1,40 @@
+<div class="container">
+  <div style="margin-top: 10px;margin-bottom: 10px;float: right;">
+    <a class="btn btn-secondary" href="/orientation_sensors/new" role="button">New Sensor</a>
+  </div>
+  <table class="table table-sm" style='margin-top: 10px'>
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Pitch</th>
+        <th scope="col">Roll</th>
+        <th scope="col">Drone Name</th>
+        <th scope="col">Created At</th>
+        <th scope="col">Updated At</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if @orientation_sensors.present? %>
+        <% @orientation_sensors.each do |orientation_sensor| %>
+          <tr>
+            <td><%= orientation_sensor.name %></td>
+            <td><%= orientation_sensor.pitch %></td>
+            <td><%= orientation_sensor.roll %></td>
+            <td><%= orientation_sensor.drone.name if orientation_sensor.drone.present? %></td>
+            <td><%= orientation_sensor.created_at %></td>
+            <td><%= orientation_sensor.updated_at %></td>
+            <td>
+              <%= link_to "Edit", edit_orientation_sensor_path(orientation_sensor), class: "btn btn-secondary btn-sm" %>
+              <%= link_to "Delete", orientation_sensor_path(orientation_sensor), method: 'delete', class: "btn btn-secondary btn-sm" %>
+            </td>
+          </tr>      
+        <% end %>
+      <% else %>
+        <tr>
+          <td>No Records Found</td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

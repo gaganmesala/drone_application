@@ -1,0 +1,16 @@
+<%= form_with model: @orientation_sensor do |orientation_sensor_form| %>
+  <%= orientation_sensor_form.label :name, "Name*" %>
+  <%= orientation_sensor_form.text_field :name, class: 'form-control', required: true %>
+
+  <%= orientation_sensor_form.label :pitch, "Pitch*" %>
+  <%= orientation_sensor_form.select :pitch, [["X-AXIS", "X-AXIS"], ["Y-AXIS", "Y-AXIS"]], {}, {class: 'form-control'} %>
+
+  <%= orientation_sensor_form.label :roll, "Roll*" %>
+  <%= orientation_sensor_form.select :roll, [["X-AXIS", "X-AXIS"], ["Y-AXIS", "Y-AXIS"]], {}, {class: 'form-control'} %>
+
+  <%= orientation_sensor_form.label :drone_id, "Select Drone" %>
+  <%= orientation_sensor_form.collection_select :drone_id, Drone.order(:name), :id, :name, {include_blank: ''},   {class: 'form-control'} %>
+  <br>
+  <%= orientation_sensor_form.submit params[:action] == 'new' ? "Create" : "Update", class: 'btn btn-dark' %>
+  <br>
+<% end %>

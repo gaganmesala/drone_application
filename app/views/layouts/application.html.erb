@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>DroneApplication</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <div id="container-fluid">
+      <%= render 'welcome/header' %>
+      <% if flash[:notice].present? %>
+        <div class="alert alert-success" style="text-align: center" role="alert">
+          <%= flash[:notice] %>
+        </div>
+      <% end %>
+      <% if flash[:error].present? %>
+        <div class="alert alert-danger" style="text-align: center" role="alert">
+          <%= flash[:error] %>
+        </div>
+      <% end %>
+      <div class="main-color" id="main-wrap">
+        <%= yield %>
+      </div>
+    </div>
+  </body>
+</html>

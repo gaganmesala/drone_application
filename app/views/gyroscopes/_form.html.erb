@@ -1,0 +1,19 @@
+<%= form_with model: @gyroscope do |gyroscope_form| %>
+  <%= gyroscope_form.label :name, "Name*" %>
+  <%= gyroscope_form.text_field :name, class: 'form-control', required: true %>
+
+  <%= gyroscope_form.label :x, "X Vector*" %>
+  <%= gyroscope_form.number_field :x, class: 'form-control', required: true %>
+
+  <%= gyroscope_form.label :y, "Y Vector*" %>
+  <%= gyroscope_form.number_field :y, class: 'form-control', required: true %>
+
+  <%= gyroscope_form.label :z, "Z Vector*" %>
+  <%= gyroscope_form.number_field :z, class: 'form-control', required: true %>
+
+  <%= gyroscope_form.label :drone_id, "Select Drone" %>
+  <%= gyroscope_form.collection_select :drone_id, Drone.order(:name), :id, :name, {include_blank: ''},   {class: 'form-control'} %>
+  <br>
+  <%= gyroscope_form.submit params[:action] == 'new' ? "Create" : "Update", class: 'btn btn-dark' %>
+  <br>
+<% end %>

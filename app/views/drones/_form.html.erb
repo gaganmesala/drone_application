@@ -1,0 +1,10 @@
+<%= form_with model: @drone do |drone_form| %>
+  <%= drone_form.label :name, "Name*" %>
+  <%= drone_form.text_field :name, class: 'form-control', required: true %>
+
+  <%= drone_form.label :colour, "Colour*" %>
+  <%= drone_form.text_field :colour, class: 'form-control', required: true %>
+  <br>
+  <%= drone_form.submit params[:action] == 'new' ? "Create" : "Update", class: 'btn btn-dark' %>
+  <br>
+<% end %>

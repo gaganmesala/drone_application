@@ -1,0 +1,37 @@
+<div class="container">
+  <div style="margin-top: 10px;margin-bottom: 10px;float: right;">
+    <p> Ready To Fly Drones</p>
+  </div>
+  <table class="table table-sm" style='margin-top: 10px'>
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Colour</th>
+        <th scope="col">Created At</th>
+        <th scope="col">Updated At</th>
+        <th scope="col">Status</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if @result.present? %>
+        <% @result.each do |drone| %>
+          <tr>
+            <td><%= drone.name %></td>
+            <td><%= drone.colour %></td>
+            <td><%= drone.created_at %></td>
+            <td><%= drone.updated_at %></td>
+            <td><%= drone.status %></td>
+            <td>
+              <%= link_to "View Drone", drone_path(drone), class: "btn btn-secondary btn-sm" %>
+            </td>
+          </tr>      
+        <% end %>
+      <% else %>
+        <tr>
+          <td>No Drones To Fly</td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

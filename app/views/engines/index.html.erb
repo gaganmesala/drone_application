@@ -1,0 +1,40 @@
+<div class="container">
+  <div style="margin-top: 10px;margin-bottom: 10px;float: right;">
+    <a class="btn btn-secondary" href="/engines/new" role="button">New Engine</a>
+  </div>
+  <table class="table table-sm" style='margin-top: 10px'>
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Power Indicator</th>
+        <th scope="col">Drone Name</th>
+        <th scope="col">Created At</th>
+        <th scope="col">Updated At</th>
+        <th scope="col">Status</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if @engines.present? %>
+        <% @engines.each do |engine| %>
+          <tr>
+            <td><%= engine.name %></td>
+            <td><%= engine.power_indicator %></td>
+            <td><%= engine.drone.name if engine.drone.present? %></td>
+            <td><%= engine.created_at %></td>
+            <td><%= engine.updated_at %></td>
+            <td><%= engine.status %></td>
+            <td>
+              <%= link_to "Edit", edit_engine_path(engine), class: "btn btn-secondary btn-sm" %>
+              <%= link_to "Delete", engine_path(engine), method: 'delete', class: "btn btn-secondary btn-sm" %>
+            </td>
+          </tr>      
+        <% end %>
+      <% else %>
+        <tr>
+          <td>No Records Found</td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,13 @@
+<%= form_with model: @engine do |engine_form| %>
+  <%= engine_form.label :name, "Name*" %>
+  <%= engine_form.text_field :name, class: 'form-control', required: true %>
+
+  <%= engine_form.label :power_indicator, "Power Indicator*" %>
+  <%= engine_form.number_field :power_indicator, class: 'form-control', required: true %>
+
+  <%= engine_form.label :drone_id, "Select Drone" %>
+  <%= engine_form.collection_select :drone_id, Drone.order(:name), :id, :name, {include_blank: ''},   {class: 'form-control'} %>
+  <br>
+  <%= engine_form.submit params[:action] == 'new' ? "Create" : "Update", class: 'btn btn-dark' %>
+  <br>
+<% end %>
